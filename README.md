@@ -1,1 +1,1 @@
-# techdegree-project-2
+# Project 1 - Guessing Game
