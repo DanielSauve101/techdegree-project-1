@@ -22,16 +22,33 @@ import random
 
     ( You can add more features/enhancements if you'd like to. )
     """
-# write your code inside this function.
+
 solution = []
 guesses = []
 best_score = []
 
 
+def start_game():
+    print("""
+    -----------------------------
+    Welcome to the Guessing Game!
+    -----------------------------
+    """)
+    print("""
+    The Game:
+    * You are to find the hidden number by entering your guess number between 1 and 10 when prompted.
+    * You may also enter the letter 'Q' for quit at any time to quit the game.
+    * You may also choose to compete for a best score in which the game will end if the hidden number is found on your first try.
+    """)
+    player_name = input("Please enter your name:  ")
+    play_game = input("Hi {}. Are you ready to begin? (Y)es or (N)o:  ".format(player_name))
+    play_game_option(play_game)
+
+
 def play_game_option(play_game):
     if play_game.lower() == "y":
         print("\n Good luck! \n")
-        start_game()
+        guessing_game()
     elif play_game.lower() == "n":
         print("Maybe next time")
     else:
@@ -70,7 +87,7 @@ def end_game():
         play_game_option(play_game)
 
 
-def start_game():
+def guessing_game():
     solution.append(random.randint(1, 10))
     while True:
         try:
@@ -107,27 +124,6 @@ def start_game():
     end_game()
 
 
-print("""
------------------------------
-Welcome to the Guessing Game!
------------------------------
-""")
-print("""
-The Game:
-* You are to find the hidden number by entering your guess number between 1 and 10 when prompted.
-* You may also enter the letter 'Q' for quit at any time to quit the game.
-* You may also choose to compete for a best score in which the game will end if the hidden number is found on your first try.
-""")
-player_name = input("Please enter your name:  ")
-play_game = input("Hi {}. Are you ready to begin? (Y)es or (N)o:  ".format(player_name))
-play_game_option(play_game)
-
-
-print("""
-Have a good day {}.
-Come back and play anytime.
-""".format(player_name))
-
-# if __name__ == '__main__':
-#     # Kick off the program by calling the start_game function.
-#     start_game()
+if __name__ == '__main__':
+    # Kick off the program by calling the start_game function.
+    start_game()
