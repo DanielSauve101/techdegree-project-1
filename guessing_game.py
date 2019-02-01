@@ -23,17 +23,14 @@ import random
     ( You can add more features/enhancements if you'd like to. )
     """
 # write your code inside this function.
-solution = random.randint(1, 10)
-
+solution = []
 guesses = []
 best_score = []
 
 
 def play_game_option(play_game):
     if play_game.lower() == "y":
-        print("""
-        Good luck {}!
-        """.format(player_name))
+        print("\n Good luck {}! \n".format(player_name))
         start_game()
     elif play_game.lower() == "n":
         print("Maybe next time")
@@ -52,18 +49,23 @@ def clear_game():
     best_score.append(len(guesses))
     best_score.sort(reverse=True)
     guesses.clear()
+    solution.clear()
 
 
 def end_game():
     if best_score[-1] == 1:
-        print("You are amazing! Your best score is {} try.".format(best_score[-1]))
+        print("""
+        You are amazing! Your best score is {} guess.
+        You have now completed the game.
+        """.format(best_score[-1]))
     else:
-        print("Your best score is {} tries.".format(best_score[-1]))
+        print("\n Your best score is {} guesses.".format(best_score[-1]))
         play_game = input("Would you like to play again? (Y)es or (N)o: ")
         play_game_option(play_game)
 
 
 def start_game():
+    solution.append(random.randint(1, 10))
     while True:
         try:
             guess = int(input("What number would you like to try (1-10):  "))
@@ -72,26 +74,23 @@ def start_game():
         except ValueError:
             print("You must enter a number between (1-10).")
         else:
-            if guess > solution:
+            if guess > solution[0]:
                 add_to_guesses(guess)
                 print("The hidden number is lower then {}.".format(guess))
                 continue
-            elif guess < solution:
+            elif guess < solution[0]:
                 add_to_guesses(guess)
                 print("The hidden number is higher then {}.".format(guess))
                 continue
-            elif guess == solution:
+            elif guess == solution[0]:
                 add_to_guesses(guess)
                 if len(guesses) == 1:
-                    print("""
-                    Wow!! Lucky guess. You have found the hidden number on your first try!!!
-                    """)
+                    print("\n Wow!! Lucky guess. You have found the hidden number on your first try!!!")
                     clear_game()
                     break
                 else:
-                    print("""
-                    Good game. You have found the hidden number in {} tries!!!
-                    """.format(len(guesses)))
+                    print(" \n Good game. You have found the hidden number in {} tries!!!".format(
+                        len(guesses)))
                     clear_game()
                     break
     end_game()
