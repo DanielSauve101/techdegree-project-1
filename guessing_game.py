@@ -30,11 +30,10 @@ best_score = []
 
 def play_game_option(play_game):
     if play_game.lower() == "y":
-        print("\n Good luck {}! \n".format(player_name))
+        print("\n Good luck! \n")
         start_game()
     elif play_game.lower() == "n":
         print("Maybe next time")
-
     else:
         print("You must use (Y) for Yes or (N) for No")
         play_game = input("Would you like to play the game? (Y)es or (N)o: ")
@@ -89,8 +88,7 @@ def start_game():
                     clear_game()
                     break
                 else:
-                    print(" \n Good game. You have found the hidden number in {} tries!!!".format(
-                        len(guesses)))
+                    print(" \n Good game. You have found the hidden number in {} tries!!!".format(len(guesses)))
                     clear_game()
                     break
     end_game()
@@ -101,7 +99,12 @@ print("""
 Welcome to the Guessing Game!
 -----------------------------
 """)
-
+print("""
+The Game:
+* You are to find the hidden number by entering your guess number between 1 and 10 when prompted.
+* You may also enter the letter 'Q' for quit at any time to quit the game.
+* You may also choose to compete for a best score in which the game will end if the hidden number is found on your first try.
+""")
 player_name = input("Please enter your name:  ")
 play_game = input("Hi {}. Are you ready to begin? (Y)es or (N)o:  ".format(player_name))
 play_game_option(play_game)
