@@ -57,6 +57,13 @@ def end_game():
         You are amazing! Your best score is {} guess.
         You have now completed the game.
         """.format(best_score[-1]))
+    elif best_score[-1] == 0:
+        if len(best_score) > 1:
+            print("""
+            You have successfully quit the game. Your best score was {} guesses.
+            """.format(best_score[-2]))
+        else:
+            print("You have successfully quit the game.")
     else:
         print("\n Your best score is {} guesses.".format(best_score[-1]))
         play_game = input("Would you like to play again? (Y)es or (N)o: ")
@@ -67,7 +74,13 @@ def start_game():
     solution.append(random.randint(1, 10))
     while True:
         try:
-            guess = int(input("What number would you like to try (1-10):  "))
+            guess = input("What number would you like to try (1-10):  ")
+            if guess.lower() == "q":
+                guesses.clear()
+                clear_game()
+                break
+            else:
+                guess = int(guess)
             if guess > 10 or guess < 1:
                 raise ValueError()
         except ValueError:
