@@ -47,10 +47,15 @@ def start_game():
 
 def play_game_option(play_game):
     if play_game.lower() == "y":
-        print("\n Good luck! \n")
-        guessing_game()
+        if len(best_score) == 0:
+            print("\n Good luck! \n")
+            guessing_game()
+        else:
+            print("\n Can you beat your best score of {} guesses.".format(best_score[-1]))
+            print("\n Good luck! \n")
+            guessing_game()
     elif play_game.lower() == "n":
-        print("Maybe next time")
+        print("\n Maybe next time")
     else:
         print("You must use (Y) for Yes or (N) for No")
         play_game = input("Would you like to play the game? (Y)es or (N)o: ")
@@ -82,7 +87,6 @@ def end_game():
         else:
             print("You have successfully quit the game.")
     else:
-        print("\n Your best score is {} guesses.".format(best_score[-1]))
         play_game = input("Would you like to play again? (Y)es or (N)o: ")
         play_game_option(play_game)
 
